@@ -1,0 +1,24 @@
+
+version: 2
+
+models:
+  - name: model_retention
+    description: "A dbt model to calculate retention matrix"
+    columns:
+      - name: user_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: metrics_users
+    description: "A dbt model to calculate metrics describing users"
+    columns:
+      - name: user_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: active_transactions
+    description: "A dbt model to calculate percent of active transactions"
