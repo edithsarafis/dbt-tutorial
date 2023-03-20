@@ -42,8 +42,8 @@ active_users AS (
           ) as DATE
         ),
         CAST(MAX(e.occurred_at) as DATE),
-        MONTH
-      ) > 1 THEN 0
+        DAY
+      ) > 45 THEN 0
       ELSE 1
     END AS IsActive,
     FROM users u
@@ -55,7 +55,7 @@ user_activities AS(
   SELECT u.user_id as temp_user_id,
     COUNT(
       CASE
-        WHEN e.occurred_at > DATE_SUB(au.last_transaction_date, INTERVAL 30 DAY) THEN e.user_id
+        WHEN e.occurred_at > DATE_SUB(au.last_transaction_date, INTERVAL 45 DAY) THEN e.user_id
         ELSE NULL
       END
     ) AS last_month_transactions,
